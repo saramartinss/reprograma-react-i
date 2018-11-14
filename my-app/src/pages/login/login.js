@@ -27,7 +27,6 @@ class Login extends React.Component {
         this.password = React.createRef()
     }
     onDisabledButton = () => {
-        console.log('this.email =>', this.email.current)
         const inputEmail =  this.email.current
         const inputPassword = this.password.current
 

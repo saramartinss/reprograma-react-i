@@ -33,7 +33,7 @@ class Input extends React.Component {
         console.log('hello onchange', value)
         if(this.props.required && value.trim() === '') {
             message = 'Campo obrigatório'
-        } else if (this.props.minLength && value.length < (this.props.minLength)){
+        } else if (value && this.props.minLength && value.length < (this.props.minLength)){
             message = `Digite pelo menos ${this.props.minLength} caracteres`
         } else if (this.props.type === 'email' && !regex.test(value)) {
             message = 'Digite um e-mail válido'
