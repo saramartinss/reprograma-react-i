@@ -40,10 +40,14 @@ class Login extends React.Component {
             })
         }
     }
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log('hello handleSubmit')
+    }
     render() {
         return (
             <Container>
-                <Form title='Login' text='Entre com seu e-mail e senha.'>
+                <Form title='Login' text='Entre com seu e-mail e senha.' onSubmit={this.handleSubmit}>
                     <Form.Label htmlFor='email'>Email:</Form.Label>
                     <Form.Input ref={this.email} type='email' id='email' placeholder='Email' onChange={this.onDisabledButton} required/>
                     <Form.Label htmlFor='password'>Senha:</Form.Label>

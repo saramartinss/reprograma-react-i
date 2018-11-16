@@ -30,7 +30,6 @@ class Input extends React.Component {
         const value = e.target.value
         const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         let message = ''
-        console.log('hello onchange', value)
         if(this.props.required && value.trim() === '') {
             message = 'Campo obrigatório'
         } else if (value && this.props.minLength && value.length < (this.props.minLength)){
