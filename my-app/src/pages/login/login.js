@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from '../../components/form'
 import Container from '../../components/container/container';
+import {setUser} from '../../infra/local-storage'
 
 // function Login() {
 //     return (
@@ -42,7 +43,14 @@ class Login extends React.Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log('hello handleSubmit')
+        const inputEmail = this.email.current
+        const inputPassword = this.password.current
+        const user = {
+            email: inputEmail.getValue(),
+            password: inputPassword.getValue()
+        }
+        setUser(user)
+        this.props.history.push('/')
     }
     render() {
         return (

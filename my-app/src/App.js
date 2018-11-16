@@ -5,6 +5,7 @@ import Login from './pages/login'
 import Signup from './pages/signup'
 import Navbar from './components/navbar'
 import PageNotFound from './components/pageNotFound';
+import Home from './pages/home/home';
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <React.Fragment>
         <Navbar />
         <Switch>
+          <Route exact path='/' component={Home}/>
           <Route path='/login' component={Login}/>
           <Route path='/conta' component={Signup}/>
           <Route component={PageNotFound} />
