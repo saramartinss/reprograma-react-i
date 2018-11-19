@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import './menu.css'
+import { getUser } from '../../../infra/local-storage';
 
 class Menu extends React.Component {
     constructor() {
@@ -8,13 +9,18 @@ class Menu extends React.Component {
         this.state = {
             open: false
         }
+        this.user = getUser()
     }
     handleOpenOrClose = () => {
         this.setState({
             open: !this.state.open
         })
     }
+    componentDidMount() {
+        console.log('hello componentDidMount')
+    }
     render() {
+        console.log('hello render')
         let classesOfButton = 'menu__button'
         let classesOfOptions = 'menu__options'
 
@@ -22,6 +28,7 @@ class Menu extends React.Component {
             classesOfButton += ' menu__button--open'
             classesOfOptions += ' menu__options--open'
         }
+        
         return (
             <div>
                 <a className={classesOfButton} onClick={this.handleOpenOrClose}>
@@ -39,9 +46,9 @@ class Menu extends React.Component {
                         </Link>
                     </li>
                     <li>
-                        <Link to='/login'>
-                            Login
-                        </Link>
+                        <a>
+                            {this.user ? 'Sair' : 'Login'}
+                        </a>
                     </li>
                 </ul>
             </div>

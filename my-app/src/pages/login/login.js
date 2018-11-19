@@ -1,7 +1,8 @@
 import React from 'react'
 import Form from '../../components/form'
 import Container from '../../components/container/container';
-import {setUser} from '../../infra/local-storage'
+import { setUser } from '../../infra/local-storage'
+import { loginUser } from '../../apis/login.api'
 
 // function Login() {
 //     return (
@@ -28,13 +29,13 @@ class Login extends React.Component {
         this.password = React.createRef()
     }
     onDisabledButton = () => {
-        const inputEmail =  this.email.current
+        const inputEmail = this.email.current
         const inputPassword = this.password.current
 
-        if(inputEmail.hasError() || inputPassword.hasError()){
+        if (inputEmail.hasError() || inputPassword.hasError()) {
             this.setState({
                 disabled: true
-            }) 
+            })
         } else {
             this.setState({
                 disabled: false
@@ -49,17 +50,25 @@ class Login extends React.Component {
             email: inputEmail.getValue(),
             password: inputPassword.getValue()
         }
-        setUser(user)
-        this.props.history.push('/')
+        loginUser(user)
+            .then((response) => {
+                setUser({
+                    email: user.email
+                })
+                this.props.history.push('/')
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
     render() {
         return (
             <Container>
                 <Form title='Login' text='Entre com seu e-mail e senha.' onSubmit={this.handleSubmit}>
                     <Form.Label htmlFor='email'>Email:</Form.Label>
-                    <Form.Input ref={this.email} type='email' id='email' placeholder='Email' onChange={this.onDisabledButton} required/>
+                    <Form.Input ref={this.email} type='email' id='email' placeholder='Email' onChange={this.onDisabledButton} required />
                     <Form.Label htmlFor='password'>Senha:</Form.Label>
-                    <Form.Input ref={this.password} type='password' id='password' placeholder='Senha' minLength={6} onChange={this.onDisabledButton} required/>
+                    <Form.Input ref={this.password} type='password' id='password' placeholder='Senha' minLength={6} onChange={this.onDisabledButton} required />
                     <Form.Button disabled={this.state.disabled}>Enviar</Form.Button>
                     <Form.Link href='/conta' id='link'>Criar uma conta</Form.Link>
                 </Form>
