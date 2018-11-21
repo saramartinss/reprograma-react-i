@@ -53,7 +53,7 @@ class Input extends React.Component {
                 onBlur={this.handleChange}
                 type={this.props.type}
                 id={this.props.id}
-                className='input'
+                className={this.props.className}
                 placeholder={this.props.placeholder}
                 required={this.props.required}
                 />
