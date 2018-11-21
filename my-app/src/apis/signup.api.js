@@ -1,7 +1,16 @@
 import api from '../infra/api-config'
 
-export function signupUser(user){
+function signupUser(user){
     const url = '/users'
 
-    return api().post(url, user)
+    const data  = {
+        name : user.name,
+        email: user.email,
+        phone: user.phone,
+        password: user.password
+    }
+
+    return api().post(url, data)
 }
+
+export default signupUser

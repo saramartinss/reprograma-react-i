@@ -10,7 +10,7 @@ class Home extends React.Component {
         super()
     }
     render(){
-        if(getUser().email){
+        if(getUser()){
             return <div>Hello Home</div>
         } else {
             return <Redirect to='/login' />
