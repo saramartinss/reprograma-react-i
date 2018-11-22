@@ -22,8 +22,8 @@ export function deletePostit(idPostit) {
   return api().delete(url)
 }
 
-export function editPostit(postit, idPostit) { 
-  const url = `/todo/${idPostit}`
+export function updatePostitApi(postit) {
+  const url = `/todo/${postit.id}`
   const data = {
     title: postit.title,
     desc: postit.text
