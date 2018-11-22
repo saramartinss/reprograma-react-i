@@ -33,7 +33,8 @@ class Home extends React.Component {
     }
 
     render() {
-        if (getUser()) {
+        const user = this.props.user ? this.props.user : getUser()
+        if (user) {
             return (
                 <div className='home'>
                     <Postit updatePostits={this.getPostits}/>
@@ -43,6 +44,7 @@ class Home extends React.Component {
                             id = {item._id}
                             title = {item.title}
                             text = {item.desc}
+                            color = {item.color}
                             updatePostits={this.getPostits}
                         />
                     ))}

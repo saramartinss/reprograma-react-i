@@ -11,7 +11,8 @@ class Postit extends React.Component {
             id: this.props.id ? this.props.id : 0,
             title: this.props.title ? this.props.title : '',
             text: this.props.text ? this.props.text : '',
-            editing: false
+            editing: false,
+            color: this.props.color ? this.props.color: '#ECDDF3'
         }
     }
     handlePostitClick = () => {
@@ -40,7 +41,8 @@ class Postit extends React.Component {
             const postit = {
                 title: this.state.title,
                 text: this.state.text,
-                id: this.state.id
+                id: this.state.id,
+                color: this.state.color
             }
             updatePostitApi(postit)
                 .then((response) => {
@@ -55,16 +57,19 @@ class Postit extends React.Component {
         } else {
             const postit = {
                 title: this.state.title,
-                text: this.state.text
+                text: this.state.text,
+                color: this.state.color
             }
             createPostit(postit)
                 .then((response) => {
-                    console.log(response)
+                    console.log(this)
                     this.props.updatePostits()
                     this.setState({
                         id: '',
                         title: '',
-                        text: ''
+                        text: '',
+                        color: '#ECDDF3',
+                        editing: false
                     })
                 })
                 .catch((error) => {
@@ -85,9 +90,15 @@ class Postit extends React.Component {
             text: inputText
         })
     }
+    setColor = (e) => {
+        this.setState({
+            color: e.target.value
+        })
+    }
     render() {
         return (
-            <div onClick={this.handlePostitClick} className='postit'>
+            <div onClick={this.handlePostitClick} className='postit' style={{background: this.state.color}}>
+            <input className='postit__color' type='color' onChange={this.setColor} />
                 <Form onSubmit={this.handlePostitSubmit}>
                     {this.state.editing && (
                         <button

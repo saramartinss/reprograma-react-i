@@ -4,7 +4,8 @@ export function createPostit(postit) {
   const url = '/todo'
   const data = {
     title: postit.title,
-    desc: postit.text
+    desc: postit.text,
+    color: postit.color
   }
 
   return api().post(url, data)
@@ -26,7 +27,8 @@ export function updatePostitApi(postit) {
   const url = `/todo/${postit.id}`
   const data = {
     title: postit.title,
-    desc: postit.text
+    desc: postit.text,
+    color: postit.color
   }
   return api().put(url, data)
  }

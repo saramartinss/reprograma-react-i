@@ -44,6 +44,16 @@
     outline: none;
 }
 
+.postit__color {
+    border-radius: 100%;
+    background-color: transparent;
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    margin-left: auto;
+}
+
 @media (min-width: 992px) {
     .postit {
         display: inline-flex;
