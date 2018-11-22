@@ -34,9 +34,19 @@ class Home extends React.Component {
 
     render() {
         if (getUser()) {
-            return this.state.postits.map((item) => {
-                return <Postit />
-            })
+            return (
+                <div className='home'>
+                    <Postit updatePostits={this.getPostits}/>
+                    {this.state.postits.map((item, index) => (
+                        <Postit
+                            id = {item.id}
+                            title = {item.title}
+                            text = {item.desc}
+                            updatePostits={this.getPostits}
+                        />
+                    ))}
+                </div>
+            )
         } else {
             return <Redirect to='/login' />
         }
