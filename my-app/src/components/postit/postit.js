@@ -33,6 +33,11 @@ class Postit extends React.Component {
             .then((response) =>{
                 console.log(response)
                 this.props.updatePostits()
+                this.setState ({
+                    id: '',
+                    title: '',
+                    text: ''
+                })
             })
             .catch((error)=>{
                 console.log(error)
