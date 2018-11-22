@@ -39,7 +39,8 @@ class Home extends React.Component {
                     <Postit updatePostits={this.getPostits}/>
                     {this.state.postits.map((item, index) => (
                         <Postit
-                            id = {item.id}
+                            key = {item._id}
+                            id = {item._id}
                             title = {item.title}
                             text = {item.desc}
                             updatePostits={this.getPostits}

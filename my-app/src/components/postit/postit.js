@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from '../form'
-import { createPostit } from '../../apis/postit.api'
+import { createPostit, deletePostit } from '../../apis/postit.api'
 
 import './postit.css'
 
@@ -20,14 +20,27 @@ class Postit extends React.Component {
             editing :  true
         })
     }
-    handlePostitRemove = () =>{
+    handlePostitRemove = (e) =>{
         console.log('handlePostitRemove')
+        e.stopPropagation()
+        const id = this.state.id
+        deletePostit(id)
+            .then((response) => {
+                console.log(response)
+                this.props.updatePostits()
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
     handlePostitSubmit = (e) => {
         e.preventDefault()
         const postit = {
             title :  this.state.title,
             text :  this.state.text
+        }
+        if(this.state.id) {
+            
         }
         createPostit(postit)
             .then((response) =>{
@@ -62,6 +75,7 @@ class Postit extends React.Component {
                 <Form onSubmit={this.handlePostitSubmit}>
                     {this.state.editing  && (
                                 <button 
+                                    type='button'
                                     onClick={this.handlePostitRemove} 
                                     className='postit__button-remove'
                                 >
