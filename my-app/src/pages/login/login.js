@@ -5,8 +5,9 @@ import { setUser } from '../../infra/local-storage'
 import { loginUser } from '../../apis/login.api'
 
 class Login extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+
         this.state = { disabled: true }
         this.email = React.createRef()
         this.password = React.createRef()
@@ -37,9 +38,9 @@ class Login extends React.Component {
                 this.props.history.push('/')
             })
             .catch((error) => {
-                console.log(error)
+                if(error.response.data.msg)
+                this.props.showAlert(error.response.data.msg)
             })
-
     }
     render() {
         return (
