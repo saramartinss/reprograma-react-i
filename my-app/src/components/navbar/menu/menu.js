@@ -17,6 +17,10 @@ class Menu extends React.Component {
     }
     handleLoginOrLogout = (e) => {
         e.preventDefault()
+        if(this.props.user){
+            localStorage.clear()
+        }
+        this.props.history.push('/login')
     }
     render() {
         console.log('hello render')
@@ -45,7 +49,7 @@ class Menu extends React.Component {
                     </li>
                     <li>
                         <a onClick={this.handleLoginOrLogout}>
-                            {this.user ? 'Sair' : 'Login'}
+                            {this.props.user ? 'Sair' : 'Login'}
                         </a>
                     </li>
                 </ul>

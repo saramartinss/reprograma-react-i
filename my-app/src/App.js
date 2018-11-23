@@ -8,6 +8,7 @@ import Navbar from './components/navbar'
 import PageNotFound from './pages/pageNotFound'
 import { startServer  } from './infra/api-config'
 import Alert from './components/alert'
+import { getUser } from './infra/local-storage'
 
 class App extends Component {
   constructor(props){
@@ -29,11 +30,14 @@ class App extends Component {
       childrenAlert: ''
     })
   }
+  componentDidMount() {
+    startServer()
+  }
   render() {
-   startServer()
+    this.user = getUser()
     return (
       <React.Fragment>
-        <Navbar history={this.props.history} />
+        <Navbar history={this.props.history} user={this.user}/>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/login' render={ (props)=> <Login showAlert={this.showAlert} {...props}/>}/>
