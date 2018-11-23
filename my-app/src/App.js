@@ -37,7 +37,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route path='/login' render={ (props)=> <Login showAlert={this.showAlert} {...props}/>}/>
-          <Route path='/conta' component={Signup} />
+          <Route path='/conta' render={ (props)=> <Signup showAlert={this.showAlert} {...props}/>} />
           <Route component={PageNotFound} />
         </Switch>
         <Alert open={this.state.openAlert} handleOnClick={this.closeAlert}>{this.state.childrenAlert}</Alert>
